@@ -1,0 +1,331 @@
+change the testimonials to achievements
+change achievements/services to project
+
+
+Here is the updated code with the separator line removed:
+
+
+.projects {
+  padding: 100px 15px;
+  background: var(--bg-color);
+  color: black;
+  text-align: center;
+}
+
+.projects h2 {
+  margin-bottom: 5rem;
+  color: white;
+}
+
+.projects-container {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 2.5rem;
+  position: relative;
+}
+
+.project-box {
+  background-color: var(--second-bg-color);
+  color: antiquewhite;
+  height: 300px;
+  border-radius: 3rem;
+  border: 5px solid var(--main-color);
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  text-align: center;
+}
+
+.project-box:hover {
+  background: var(--bg-color);
+  border: 5px solid var(--main-color);
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 0 50px var(--main-color);
+}
+
+.project-info {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  max-height: 200px;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 5rem;
+}
+
+.project-info h4 {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 2;
+}
+
+.project-info p {
+  font-size: 1.6rem;
+  font-weight: 600;
+  max-height: 100px;
+  line-height: 1.7;
+  margin: auto;
+  text-align: center;
+}
+
+
+I removed the .projects-container::before pseudo-element, which was creating the separator line. Now the boxes should be aligned without the separator line.
+
+
+Printed the revised code with the requested changes:
+
+
+.projects {
+  padding: 100px 15px;
+  background: var(--bg-color);
+  color: black;
+  text-align: center;
+}
+
+.projects h2 {
+  margin-bottom: 5rem;
+  color: white;
+}
+
+.projects-container {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 2.5rem;
+  position: relative;
+}
+
+.projects-container::before {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 100%;
+  background-color: var(--main-color);
+  left: calc(50% - 1px);
+}
+
+.project-box {
+  background-color: var(--main-color);
+  height: 300px;
+  border-radius: 3rem;
+  border: 5px solid transparent;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  text-align: center;
+}
+
+.project-box:hover {
+  background: white;
+  color: black;
+  border: 5px solid var(--main-color);
+  transform: scale(1.05);
+}
+
+.project-info {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  max-height: 200px;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 5rem;
+}
+
+.project-info h4 {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 2;
+}
+
+.project-info p {
+  font-size: 1.6rem;
+  font-weight: 600;
+  max-height: 100px;
+  line-height: 1.7;
+  margin: auto;
+  text-align: center;
+}
+
+
+I've made the necessary changes to center the content, 
+including adding text-align:
+ center to various elements and
+  adjusting the layout to ensure everything is centered.
+   Let me know if this revised code meets your requirements!
+
+   To achieve the desired layout where one box is on the left and the other is on the right, I've made some adjustments to the code. Here's the revised version:
+
+
+.projects {
+  padding: 100px 15px;
+  background: var(--bg-color);
+  color: black;
+  text-align: center;
+}
+
+.projects h2 {
+  margin-bottom: 5rem;
+  color: white;
+}
+
+.projects-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+}
+
+.projects-container::before {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 100%;
+  background-color: var(--main-color);
+  left: calc(50% - 1px);
+}
+
+.project-box {
+  flex: 1;
+  margin: 20px;
+  background-color: var(--main-color);
+  height: 300px;
+  border-radius: 3rem;
+  border: 5px solid transparent;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  text-align: center;
+}
+
+.project-box:nth-child(odd) {
+  margin-right: 40px;
+  text-align: right;
+}
+
+.project-box:nth-child(even) {
+  margin-left: 40px;
+  text-align: left;
+}
+
+.project-box:hover {
+  background: white;
+  color: black;
+  border: 5px solid var(--main-color);
+  transform: scale(1.05);
+}
+
+.project-info {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  max-height: 200px;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 5rem;
+}
+
+.project-info h4 {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 2;
+}
+
+.project-info p {
+  font-size: 1.6rem;
+  font-weight: 600;
+  max-height: 100px;
+  line-height: 1.7;
+  margin: auto;
+  text-align: center;
+}
+
+
+In this revised code, I've changed the .
+projects-container to use flex instead of grid, 
+and added margins to the .project-box elements to create space between them. 
+I've also added nth-child selectors to adjust the margins and text alignment for the odd and even boxes, so they alternate between left and right alignment.
+रेमोविंग द लाइन व्हिच इस सेपरेटिंग द बॉक्सेस:
+
+
+.projects {
+  padding: 100px 15px;
+  background: var(--bg-color);
+  color: black;
+  text-align: center;
+}
+
+.projects h2 {
+  margin-bottom: 5rem;
+  color: white;
+}
+
+.projects-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+}
+
+.project-box {
+  flex: 1;
+  margin: 20px;
+  background-color: var(--main-color);
+  height: 300px;
+  border-radius: 3rem;
+  border: 5px solid transparent;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  text-align: center;
+}
+
+.project-box:nth-child(odd) {
+  margin-right: 40px;
+  text-align: right;
+}
+
+.project-box:nth-child(even) {
+  margin-left: 40px;
+  text-align: left;
+}
+
+.project-box:hover {
+  background: white;
+  color: black;
+  border: 5px solid var(--main-color);
+  transform: scale(1.05);
+}
+
+.project-info {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  max-height: 200px;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 5rem;
+}
+
+.project-info h4 {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 2;
+}
+
+.project-info p {
+  font-size: 1.6rem;
+  font-weight: 600;
+  max-height: 100px;
+  line-height: 1.7;
+  margin: auto;
+  text-align: center;
+}
+
+
+I removed the .projects-container::before pseudo-element, which was creating the vertical line separating the boxes. Now the boxes should be aligned without the separating line.
