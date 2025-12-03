@@ -1,9 +1,17 @@
+// =====================================
+//  DOM ELEMENT SELECTION
+// =====================================
+
 // Select DOM elements
 const menuIcon = document.querySelector("#menu-icon");
 const navbar = document.querySelector(".navbar");
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll(".navbar a");
 const header = document.querySelector(".header");
+
+// =====================================
+//  MOBILE MENU TOGGLE
+// =====================================
 
 // Mobile menu toggle functionality
 menuIcon.addEventListener("click", () => {
@@ -14,7 +22,11 @@ menuIcon.addEventListener("click", () => {
     : "";
 });
 
-// Premium Tech Stack Interactions
+// =====================================
+//  PREMIUM TECH STACK INTERACTIONS
+//  (TechArsenal Class + Modal + Hover)
+// =====================================
+
 class TechArsenal {
   constructor() {
     this.techData = {
@@ -103,39 +115,42 @@ class TechArsenal {
     this.init();
   }
 
+  // Initialise all tech-related behaviours
   init() {
     this.setupTechCards();
     this.setupModal();
     this.setupAnimations();
   }
 
+  // Attach click/hover handlers to tech cards
   setupTechCards() {
     const techCards = document.querySelectorAll(".tech-card");
 
     techCards.forEach((card) => {
-      card.addEventListener("click", (e) => {
+      card.addEventListener("click", () => {
         const tech = card.dataset.tech;
         this.openModal(tech);
       });
 
       // Hover effects
-      card.addEventListener("mouseenter", (e) => {
+      card.addEventListener("mouseenter", () => {
         this.animateCard(card, true);
       });
 
-      card.addEventListener("mouseleave", (e) => {
+      card.addEventListener("mouseleave", () => {
         this.animateCard(card, false);
       });
     });
   }
 
+  // Hover animation for single tech card
   animateCard(card, isHovering) {
     const logo = card.querySelector(".tech-logo img, .tech-logo i");
     const particles = card.querySelector(".tech-particles");
 
     if (isHovering) {
       card.style.transform = "translateY(-15px) scale(1.1)";
-      if (logo.tagName === "IMG") {
+      if (logo && logo.tagName === "IMG") {
         logo.style.transform = "rotateY(360deg)";
       }
       if (particles) {
@@ -143,14 +158,17 @@ class TechArsenal {
       }
     } else {
       card.style.transform = "translateY(0) scale(1)";
-      if (logo.tagName === "IMG") {
+      if (logo && logo.tagName === "IMG") {
         logo.style.transform = "rotateY(0)";
       }
     }
   }
 
+  // Modal setup: events for close, overlay click, escape key
   setupModal() {
     this.modal = document.getElementById("techModal");
+    if (!this.modal) return; // safety in case modal HTML is not present
+
     this.closeBtn = this.modal.querySelector(".close-modal");
 
     this.closeBtn.addEventListener("click", () => this.closeModal());
@@ -165,9 +183,10 @@ class TechArsenal {
     });
   }
 
+  // Open modal with tech info
   openModal(tech) {
     const data = this.techData[tech];
-    if (!data) return;
+    if (!data || !this.modal) return;
 
     const modal = this.modal;
     const logo = modal.querySelector("#modalLogo");
@@ -189,9 +208,9 @@ class TechArsenal {
     else if (data.level >= 70) levelText.textContent = "Intermediate";
     else levelText.textContent = "Beginner";
 
-    // Try to get logo
+    // Try to get logo from original card
     const techCard = document.querySelector(`[data-tech="${tech}"]`);
-    if (techCard) {
+    if (techCard && logo) {
       const originalLogo = techCard.querySelector("img, i");
       if (originalLogo) {
         if (originalLogo.tagName === "IMG") {
@@ -208,11 +227,14 @@ class TechArsenal {
     document.body.style.overflow = "hidden";
   }
 
+  // Close modal
   closeModal() {
+    if (!this.modal) return;
     this.modal.classList.remove("active");
     document.body.style.overflow = "";
   }
 
+  // Intersection animation for tech categories
   setupAnimations() {
     const categories = document.querySelectorAll(".tech-category");
 
@@ -231,6 +253,7 @@ class TechArsenal {
     categories.forEach((category) => observer.observe(category));
   }
 
+  // Animate cards inside a category
   animateCategory(category) {
     const cards = category.querySelectorAll(".tech-card");
 
@@ -240,15 +263,17 @@ class TechArsenal {
   }
 }
 
-// Initialize when DOM is loaded
+// Initialize TechArsenal once DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
   new TechArsenal();
+  console.log("💫 Premium Tech Arsenal Loaded!");
 });
 
-// Add to existing JavaScript
-console.log("💫 Premium Tech Arsenal Loaded!");
+// =====================================
+//  NAV LINK BEHAVIOUR + SMOOTH SCROLL
+// =====================================
 
-// Close mobile menu when clicking on nav links
+// Close mobile menu and update active state when clicking on nav links
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
     // Close mobile menu
@@ -276,7 +301,10 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
-// Throttle function for scroll performance
+// =====================================
+//  UTILITY: THROTTLE
+// =====================================
+
 function throttle(func, limit) {
   let inThrottle;
   return function () {
@@ -290,7 +318,10 @@ function throttle(func, limit) {
   };
 }
 
-// Active section detection
+// =====================================
+//  ACTIVE SECTION HIGHLIGHT ON SCROLL
+// =====================================
+
 function updateActiveSection() {
   let current = "";
   const scrollPosition = window.scrollY + 100;
@@ -317,7 +348,10 @@ function updateActiveSection() {
 
 window.addEventListener("scroll", throttle(updateActiveSection, 100));
 
-// Header background on scroll
+// =====================================
+//  HEADER BACKGROUND ON SCROLL
+// =====================================
+
 function updateHeaderBackground() {
   if (window.scrollY > 100) {
     header.style.background = "rgba(11, 12, 16, 0.95)";
@@ -330,7 +364,10 @@ function updateHeaderBackground() {
 
 window.addEventListener("scroll", throttle(updateHeaderBackground, 100));
 
-// Close mobile menu when clicking outside
+// =====================================
+//  MOBILE MENU: CLICK OUTSIDE / ESCAPE
+// =====================================
+
 document.addEventListener("click", (e) => {
   if (
     navbar.classList.contains("active") &&
@@ -352,7 +389,11 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-// Handle page load
+// =====================================
+//  PAGE LOAD & RESIZE HANDLING
+// =====================================
+
+// Handle page load (scroll to hash, update header)
 window.addEventListener("load", () => {
   const hash = window.location.hash;
   if (hash) {
@@ -366,7 +407,7 @@ window.addEventListener("load", () => {
   updateHeaderBackground();
 });
 
-// Handle resize events
+// Handle resize events (close mobile nav on desktop)
 window.addEventListener("resize", () => {
   if (window.innerWidth > 768 && navbar.classList.contains("active")) {
     navbar.classList.remove("active");
@@ -375,7 +416,10 @@ window.addEventListener("resize", () => {
   }
 });
 
-// Animation for skill progress bars
+// =====================================
+//  SKILL PROGRESS BARS (LEGACY .skills)
+// =====================================
+
 function animateSkillBars() {
   const skillProgresses = document.querySelectorAll(".skill-progress");
 
@@ -408,7 +452,10 @@ if (skillsSection) {
   skillsObserver.observe(skillsSection);
 }
 
-// Text animation enhancement
+// =====================================
+//  TEXT TYPING ANIMATION RESET
+// =====================================
+
 function initializeTextAnimation() {
   const animatedText = document.querySelector(".text-animation span");
   if (animatedText) {
@@ -419,6 +466,7 @@ function initializeTextAnimation() {
   }
 }
 
+// Initial run
 initializeTextAnimation();
 
 // Reinitialize animations when page becomes visible
@@ -428,7 +476,10 @@ document.addEventListener("visibilitychange", () => {
   }
 });
 
-// Interactive heart animation
+// =====================================
+//  INTERACTIVE HEART ANIMATION
+// =====================================
+
 function setupHeartAnimation() {
   const hearts = document.querySelectorAll(".animated-heart");
 
@@ -439,7 +490,7 @@ function setupHeartAnimation() {
       this.classList.toggle("pulse");
     });
 
-    // Double click for surprise
+    // Double click for surprise explosion
     heart.addEventListener("dblclick", function () {
       createHeartExplosion(this);
     });
@@ -494,8 +545,74 @@ function createHeartExplosion(element) {
   }
 }
 
-// Initialize heart animations
+// ================================
+// CONTACT FORM: MAILTO HANDLER
+// ================================
+
+const contactForm = document.getElementById("contact-form");
+const formStatus = document.getElementById("form-status");
+
+const RECEIVER_EMAIL = "intruder.known.aashu@gmail.com";
+
+if (contactForm) {
+  contactForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // Get values
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const subject = document.getElementById("subject").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    // Basic validation (extra safety, even with required attributes)
+    if (!name || !email || !subject || !message) {
+      if (formStatus) {
+        formStatus.textContent = "Please fill in all required fields.";
+        formStatus.style.color = "#ff6b6b";
+      }
+      return;
+    }
+
+    // Build email body
+    const bodyLines = [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      phone ? `Phone: ${phone}` : "",
+      "",
+      "Message:",
+      message
+    ].filter(Boolean); 
+    
+    const mailtoLink =
+      "mailto:" +
+      encodeURIComponent(RECEIVER_EMAIL) +
+      "?subject=" +
+      encodeURIComponent(subject) +
+      "&body=" +
+      encodeURIComponent(bodyLines.join("\n"));
+
+    // Open default mail client
+    window.location.href = mailtoLink;
+
+    // Optional UX: show a small message & reset form
+    if (formStatus) {
+      formStatus.textContent =
+        "Opening your email app… You can review and send the message there.";
+      formStatus.style.color = "#00ff88";
+    }
+
+    // Optional: reset form fields
+    contactForm.reset();
+  });
+}
+
+// Initialize heart animations when DOM is ready
 document.addEventListener("DOMContentLoaded", setupHeartAnimation);
+
+// =====================================
+//  DEBUG / INFO LOGS
+// =====================================
 
 console.log("🚀 Portfolio loaded successfully!");
 console.log("💻 Developed by Aashish Pathak");
