@@ -1,5 +1,5 @@
 // =====================================
-//  DOM ELEMENT SELECTION
+// * DOM ELEMENT SELECTION
 // =====================================
 
 // Select DOM elements
@@ -10,7 +10,7 @@ const navLinks = document.querySelectorAll(".navbar a");
 const header = document.querySelector(".header");
 
 // =====================================
-//  MOBILE MENU TOGGLE
+// * MOBILE MENU TOGGLE
 // =====================================
 
 // Mobile menu toggle functionality
@@ -23,8 +23,8 @@ menuIcon.addEventListener("click", () => {
 });
 
 // =====================================
-//  PREMIUM TECH STACK INTERACTIONS
-//  (TechArsenal Class + Modal + Hover)
+//  * PREMIUM TECH STACK INTERACTIONS
+//  * (TechArsenal Class + Modal + Hover)
 // =====================================
 
 class TechArsenal {
@@ -270,7 +270,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // =====================================
-//  NAV LINK BEHAVIOUR + SMOOTH SCROLL
+//  * NAV LINK BEHAVIOUR + SMOOTH SCROLL
 // =====================================
 
 // Close mobile menu and update active state when clicking on nav links
@@ -302,7 +302,7 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 });
 
 // =====================================
-//  UTILITY: THROTTLE
+// * UTILITY: THROTTLE
 // =====================================
 
 function throttle(func, limit) {
@@ -319,7 +319,7 @@ function throttle(func, limit) {
 }
 
 // =====================================
-//  ACTIVE SECTION HIGHLIGHT ON SCROLL
+// * ACTIVE SECTION HIGHLIGHT ON SCROLL
 // =====================================
 
 function updateActiveSection() {
@@ -349,7 +349,7 @@ function updateActiveSection() {
 window.addEventListener("scroll", throttle(updateActiveSection, 100));
 
 // =====================================
-//  HEADER BACKGROUND ON SCROLL
+//  * HEADER BACKGROUND ON SCROLL
 // =====================================
 
 function updateHeaderBackground() {
@@ -365,7 +365,7 @@ function updateHeaderBackground() {
 window.addEventListener("scroll", throttle(updateHeaderBackground, 100));
 
 // =====================================
-//  MOBILE MENU: CLICK OUTSIDE / ESCAPE
+// *  MOBILE MENU: CLICK OUTSIDE / ESCAPE
 // =====================================
 
 document.addEventListener("click", (e) => {
@@ -390,7 +390,7 @@ document.addEventListener("keydown", (e) => {
 });
 
 // =====================================
-//  PAGE LOAD & RESIZE HANDLING
+// *  PAGE LOAD & RESIZE HANDLING
 // =====================================
 
 // Handle page load (scroll to hash, update header)
@@ -417,7 +417,7 @@ window.addEventListener("resize", () => {
 });
 
 // =====================================
-//  SKILL PROGRESS BARS (LEGACY .skills)
+// *  SKILL PROGRESS BARS (LEGACY .skills)
 // =====================================
 
 function animateSkillBars() {
@@ -453,7 +453,7 @@ if (skillsSection) {
 }
 
 // =====================================
-//  TEXT TYPING ANIMATION RESET
+// * TEXT TYPING ANIMATION RESET
 // =====================================
 
 function initializeTextAnimation() {
@@ -477,7 +477,7 @@ document.addEventListener("visibilitychange", () => {
 });
 
 // =====================================
-//  INTERACTIVE HEART ANIMATION
+// * INTERACTIVE HEART ANIMATION
 // =====================================
 
 function setupHeartAnimation() {
@@ -546,7 +546,7 @@ function createHeartExplosion(element) {
 }
 
 // ================================
-// CONTACT FORM: MAILTO HANDLER
+// * CONTACT FORM: MAILTO HANDLER
 // ================================
 
 const contactForm = document.getElementById("contact-form");
@@ -582,8 +582,8 @@ if (contactForm) {
       "",
       "Message:",
       message
-    ].filter(Boolean); 
-    
+    ].filter(Boolean);
+
     const mailtoLink =
       "mailto:" +
       encodeURIComponent(RECEIVER_EMAIL) +
@@ -607,11 +607,21 @@ if (contactForm) {
   });
 }
 
+// Clear form status when user returns to the page
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
+    const statusBox = document.getElementById("form-status");
+    if (statusBox) {
+      statusBox.textContent = "";
+    }
+  }
+});
+
 // Initialize heart animations when DOM is ready
 document.addEventListener("DOMContentLoaded", setupHeartAnimation);
 
 // =====================================
-//  DEBUG / INFO LOGS
+// * DEBUG / INFO LOGS
 // =====================================
 
 console.log("🚀 Portfolio loaded successfully!");
