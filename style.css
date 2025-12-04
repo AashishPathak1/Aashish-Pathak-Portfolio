@@ -445,7 +445,7 @@ section {
    (.education used as Experience wrapper)
 ========================================= */
 
-.education {
+.experience {
   background: var(--second-bg-color);
   padding: 10rem 5%;
 }
@@ -568,6 +568,516 @@ section {
   background: rgba(255, 255, 255, 0.06);
   transform: translateX(8px);
   box-shadow: 0 8px 20px rgba(102, 252, 241, 0.15);
+}
+
+/* Container Setup */
+.experience-modern {
+  background: var(--bg-color);
+  padding: 10rem 7%;
+}
+
+.exp-container {
+  max-width: 1000px;
+  margin: 4rem auto 0;
+  display: flex;
+  flex-direction: column;
+  /* Removed gap, let the cards handle spacing via padding */
+}
+
+/* The Card Wrapper */
+.exp-card {
+  display: flex;
+  gap: 3rem;
+  position: relative;
+  /* Important: This ensures the connector stretches to the full height of the content */
+  align-items: stretch;
+}
+
+/* Connector Column (The Rail) */
+.exp-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 50px;
+}
+
+/* The Dot */
+.exp-dot {
+  width: 22px;
+  height: 22px;
+  background: var(--bg-color);
+  border: 3px solid var(--main-color);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--main-color);
+  z-index: 2;
+  flex-shrink: 0; /* Prevents dot from squishing */
+}
+
+/* The Line (Updated for Visibility) */
+.exp-line {
+  width: 3px; /* Slightly thicker for better visibility */
+  flex-grow: 1; /* KEY FIX: Forces line to fill empty vertical space */
+  background: rgba(255, 255, 255, 0.1);
+  margin-top: 5px;
+  margin-bottom: 35px;
+  border-radius: 3px;
+  transition: 0.3s ease;
+  min-height: 50px; /* Ensures line exists even with short content */
+}
+
+/* Hover: Light up the line */
+.exp-card:hover .exp-line {
+  background: var(--main-color);
+  box-shadow: 0 0 15px var(--main-color);
+}
+
+/* Special styling for the Last Item (Internship) */
+/* Instead of hiding it, we fade it out for a cool effect */
+.exp-card:last-child .exp-line {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
+}
+
+.exp-card:last-child:hover .exp-line {
+  background: linear-gradient(to bottom, var(--main-color), transparent);
+  box-shadow: none; /* Remove shadow on the faded part to keep it clean */
+}
+
+/* Main Content Box */
+.exp-content {
+  flex: 1;
+  background: var(--second-bg-color);
+  padding: 3rem;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 4rem; /* Adds space between cards */
+}
+
+/* Card Hover Effects */
+.exp-content:hover {
+  transform: translateY(-5px);
+  border-color: var(--main-color);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* The glowing side bar on the card itself */
+.exp-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 0%; /* Starts invisible */
+  background: var(--main-color);
+  transition: 0.4s ease;
+  box-shadow: 0 0 15px var(--main-color);
+}
+
+/* Slide down the side bar on hover */
+.exp-content:hover::before {
+  height: 100%;
+}
+
+/* Header Section */
+.exp-header {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1.5rem;
+}
+
+.exp-role {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.exp-role h3 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.exp-date {
+  font-size: 1.4rem;
+  background: rgba(102, 252, 241, 0.1);
+  color: var(--main-color);
+  padding: 0.5rem 1.2rem;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.company-name {
+  font-size: 1.6rem;
+  color: var(--main-color);
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+/* Bullet Points */
+.experience-points {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.point {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: var(--text-color);
+  background: rgba(255, 255, 255, 0.02);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.1); /* Default visible border */
+  transition: 0.3s ease;
+}
+
+.point:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid var(--main-color); /* Highlight on hover */
+  transform: translateX(5px);
+  box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.point strong {
+  color: var(--main-color);
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .exp-card {
+    gap: 1.5rem;
+  }
+
+  .exp-connector {
+    width: 30px;
+  }
+
+  .exp-dot {
+    width: 16px;
+    height: 16px;
+  }
+
+  .exp-content {
+    padding: 2rem;
+  }
+
+  .exp-role {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* =========================================
+   Education Section
+========================================= */
+/* Section wrapper */
+.edu-section {
+  background: var(--second-bg-color);
+  padding: 10rem 5%;
+}
+
+/* Heading */
+.edu-heading {
+  text-align: center;
+  font-size: 3.6rem;
+  margin-bottom: 5rem;
+  color: var(--text-color);
+}
+
+/* Timeline container */
+.edu-timeline {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  position: relative;
+}
+
+/* Vertical line */
+.edu-timeline::before {
+  content: "";
+  position: absolute;
+  left: 1.1rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    rgba(102, 252, 241, 0.6),
+    rgba(102, 252, 241, 0.05)
+  );
+}
+
+/* Each education item */
+.edu-item {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  position: relative;
+}
+
+/* Dot marker */
+.edu-marker {
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: var(--main-color);
+  box-shadow: 0 0 15px var(--main-color);
+  flex-shrink: 0;
+  margin-top: 0.8rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Card */
+.edu-card {
+  background: var(--bg-color);
+  border-radius: 1.6rem;
+  border: 1px solid rgba(102, 252, 241, 0.4);
+  padding: 2.4rem 2.8rem;
+  width: 100%;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Accent bar on left side of card */
+.edu-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10%;
+  bottom: 10%;
+  width: 4px;
+  border-radius: 0 999px 999px 0;
+  background: var(--main-color);
+  box-shadow: 0 0 18px rgba(102, 252, 241, 0.7);
+}
+
+/* Hover effect */
+.edu-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.6);
+  border-color: var(--main-color);
+}
+
+/* Date pill */
+.edu-date {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 1.4rem;
+  border-radius: 999px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  background: rgba(102, 252, 241, 0.15);
+  color: var(--main-color);
+  margin-bottom: 1rem;
+  border: 1px solid rgba(102, 252, 241, 0.8);
+}
+
+/* Title & text */
+.edu-title {
+  font-size: 2rem;
+  color: var(--main-color);
+  margin-bottom: 0.8rem;
+}
+
+.edu-text {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+.edu-school {
+  color: var(--main-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .edu-timeline {
+    padding-left: 1.5rem;
+  }
+
+  .edu-timeline::before {
+    left: 0.7rem;
+  }
+
+  .edu-item {
+    gap: 1.4rem;
+  }
+
+  .edu-card {
+    padding: 2rem 2.2rem;
+  }
+
+  .edu-heading {
+    font-size: 3rem;
+  }
+}
+/* Section Layout */
+.education-pro {
+  background: var(--second-bg-color);
+  padding: 10rem 7%;
+}
+
+.edu-grid-pro {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+/* The Professional Card */
+.edu-box {
+  position: relative;
+  background: var(--bg-color);
+  border-radius: 2rem;
+  overflow: hidden;
+  padding: 4rem 3rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.4s ease;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Hover Interaction: Lift & Glow */
+.edu-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border-color: var(--main-color);
+}
+
+/* The "Wow" Element: Large Background Number */
+.bg-number {
+  position: absolute;
+  top: -1rem;
+  right: 1rem;
+  font-size: 15rem;
+  font-weight: 800;
+  color: var(--text-color);
+  opacity: 0.03; /* Very subtle texture */
+  line-height: 1;
+  z-index: -1;
+  transition: 0.4s ease;
+  user-select: none;
+}
+
+/* On hover, the number moves slightly for 3D effect */
+.edu-box:hover .bg-number {
+  color: var(--main-color);
+  opacity: 0.1;
+  transform: translateX(-10px) scale(1.1);
+}
+
+/* Content Styling */
+.box-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* The Year "Pill" */
+.year-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
+  padding: 0.6rem 1.8rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  border-radius: 50px;
+  margin-bottom: 2rem;
+  transition: 0.3s;
+}
+
+.edu-box:hover .year-badge {
+  background: var(--main-color);
+  color: var(--bg-color);
+  box-shadow: 0 0 15px var(--main-color);
+}
+
+/* Typography */
+.edu-box h3 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+
+.edu-box h4 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--main-color);
+  margin-bottom: 1.5rem;
+}
+
+.institute {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  opacity: 0.8;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+}
+
+/* Footer / Bottom Line */
+.box-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.score {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.status {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--text-color);
+  opacity: 0.6;
+}
+
+/* Decorative Line at bottom of card that grows on hover */
+.edu-box::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 4px;
+  background: var(--main-color);
+  transition: 0.4s ease;
+}
+
+.edu-box:hover::after {
+  width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .edu-grid-pro {
+    grid-template-columns: 1fr;
+  }
+
+  .bg-number {
+    font-size: 10rem;
+  }
 }
 
 /* =========================================
@@ -736,7 +1246,7 @@ section {
 }
 
 .logo-card img {
-  border-radius: 10px;
+  border-radius: 5px;
   max-width: 100%;
   max-height: 60px;
   object-fit: cover;
@@ -756,7 +1266,7 @@ section {
   }
 
   .logo-card img {
-    max-height: 32px;
+    max-height: 45px;
   }
 }
 
