@@ -8,9 +8,6 @@
 
 This repository houses the source code for my personal portfolio website. It showcases my journey as a developer, highlighting my education, professional experience, technical skills, and research achievements.
 
-![Portfolio Preview](<img width="1896" height="883" alt="image" src="https://github.com/user-attachments/assets/799ec245-aa42-4fcf-aa7d-3693d56b882e" />)
-<!-- 👆 RENAME YOUR SCREENSHOT TO 'preview.png' AND PUT IT IN THE IMAGES FOLDER, OR CHANGE THIS PATH -->
-
 ---
 
 ## 🚀 Live Demo
@@ -107,3 +104,6 @@ A comprehensive Data Analytics project using Power BI to analyze global socioeco
 <p align="center">
   © 2025 Made with ❤️ by <b>Aashish Pathak</b>
 </p>
+
+---
+<img width="1893" height="886" alt="image" src="https://github.com/user-attachments/assets/8c1c166f-da9c-42bc-94f8-4db13b5128ec" />
